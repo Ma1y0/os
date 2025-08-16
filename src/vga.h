@@ -1,8 +1,6 @@
-#ifndef VGA_H
-#define VGA_H
+#pragma once
 
 #include <stddef.h>
-#include <stdint.h>
 
 #define VGA_MEM 0xB8000
 #define VGA_COLS 80
@@ -28,7 +26,5 @@ enum vga_color {
 };
 
 void vga_puts(const char *s, enum vga_color color, size_t x, size_t y);
-void vga_putchar(uint8_t ch, enum vga_color color, size_t x, size_t y);
+void vga_putchar(char ch, enum vga_color color, size_t x, size_t y);
 void vga_clear(void);
-
-#endif

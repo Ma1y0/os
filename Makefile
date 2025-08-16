@@ -64,6 +64,10 @@ run: $(KERNEL_BIN)
 clean:
 	rm -rf $(BUILD_DIR)
 
+# Generate compile_commands.json using bear
+bear: clean
+	bear -- $(MAKE) all
+
 # Debug: show what files will be compiled
 debug:
 	@echo "C sources: $(C_SOURCES)"

@@ -10,7 +10,7 @@ void vga_clear(void) {
 }
 
 // Puts the char `ch` into the VGA text buffer
-void vga_putchar(uint8_t ch, enum vga_color color, size_t x, size_t y) {
+void vga_putchar(char ch, enum vga_color color, size_t x, size_t y) {
     vga_mem[y * VGA_COLS + x] = (color << 8) | ch;
 }
 

@@ -1,0 +1,53 @@
+[
+  {
+    "arguments": [
+      "/nix/store/x3bl1vw9wvs2vjn1ijnrfi8y1j7fcnlc-i686-elf-gcc-wrapper-13.3.0/bin/i686-elf-gcc",
+      "-c",
+      "-std=gnu17",
+      "-ffreestanding",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-o",
+      "build/console.o",
+      "src/console.c"
+    ],
+    "directory": "/home/ma1y0/Documents/c/os",
+    "file": "/home/ma1y0/Documents/c/os/src/console.c",
+    "output": "/home/ma1y0/Documents/c/os/build/console.o"
+  },
+  {
+    "arguments": [
+      "/nix/store/x3bl1vw9wvs2vjn1ijnrfi8y1j7fcnlc-i686-elf-gcc-wrapper-13.3.0/bin/i686-elf-gcc",
+      "-c",
+      "-std=gnu17",
+      "-ffreestanding",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-o",
+      "build/kernel.o",
+      "src/kernel.c"
+    ],
+    "directory": "/home/ma1y0/Documents/c/os",
+    "file": "/home/ma1y0/Documents/c/os/src/kernel.c",
+    "output": "/home/ma1y0/Documents/c/os/build/kernel.o"
+  },
+  {
+    "arguments": [
+      "/nix/store/x3bl1vw9wvs2vjn1ijnrfi8y1j7fcnlc-i686-elf-gcc-wrapper-13.3.0/bin/i686-elf-gcc",
+      "-c",
+      "-std=gnu17",
+      "-ffreestanding",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-o",
+      "build/vga.o",
+      "src/vga.c"
+    ],
+    "directory": "/home/ma1y0/Documents/c/os",
+    "file": "/home/ma1y0/Documents/c/os/src/vga.c",
+    "output": "/home/ma1y0/Documents/c/os/build/vga.o"
+  }
+]

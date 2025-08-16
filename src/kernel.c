@@ -1,13 +1,16 @@
 #include <stddef.h>
 
+#include "console.h"
 #include "vga.h"
 
 void kernel_main(void) {
-    vga_putchar('x', VGA_COLOR_MAGENTA, 2, 1);
-
     vga_clear();
+    putchar('x');
+    putchar('a');
+    putchar('b');
 
-    vga_putchar('x', VGA_COLOR_LIGHT_CYAN, 2, 1);
+    puts("Hello, Wordl!");
 
-    vga_puts("Hello, World!", VGA_COLOR_LIGHT_RED, 5, 5);
+    putchar('c');
+    putchar('d');
 }
