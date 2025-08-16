@@ -1,20 +1,26 @@
 CC      := i686-elf-gcc
 AS      := nasm
 LD      := i686-elf-gcc
-# What standard should I use
-CFLAGS  := -std=gnu17 -ffreestanding -O2 -Wall -Wextra
+CFLAGS  := -std=gnu17 -ffreestanding -O2 -Wall -Wextra -Iinclude -Iinclude/drivers -Iinclude/kernel -Iinclude/lib
 LDFLAGS := -T linker.ld -ffreestanding -O2 -nostdlib
 ASFLAGS := -felf32
 
 # Directories
-SRC_DIR := src
 BUILD_DIR := build
 ISO_DIR := $(BUILD_DIR)/isodir
 
-# Files
-C_SOURCES := $(wildcard $(SRC_DIR)/*.c)
-ASM_SOURCES := boot.asm
-C_OBJS := $(C_SOURCES:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
+# Source files
+KERNEL_SRC := $(wildcard kernel/*.c)
+DRIVERS_SRC := $(wildcard drivers/*.c)
+LIB_SRC := $(wildcard lib/*.c)
+C_SOURCES := $(KERNEL_SRC) $(DRIVERS_SRC) $(LIB_SRC)
+ASM_SOURCES := arch/x86/boot.asm
+
+# Object files
+C_OBJS := $(C_SOURCES:%.c=$(BUILD_DIR)/%.o)
+C_OBJS := $(subst kernel/,kernel/,$(C_OBJS))
+C_OBJS := $(subst drivers/,drivers/,$(C_OBJS))
+C_OBJS := $(subst lib/,lib/,$(C_OBJS))
 ASM_OBJS := $(BUILD_DIR)/boot.o
 OBJS := $(ASM_OBJS) $(C_OBJS)
 ISO_FILE := $(BUILD_DIR)/myos.iso
@@ -25,7 +31,7 @@ KERNEL_BIN := $(BUILD_DIR)/myos.bin
 # GRUB config
 GRUB_CFG := $(ISO_DIR)/boot/grub/grub.cfg
 
-.PHONY: all clean run iso
+.PHONY: all clean run iso debug bear
 
 all: $(KERNEL_BIN)
 
@@ -34,16 +40,28 @@ $(KERNEL_BIN): $(OBJS) linker.ld
 	$(LD) $(LDFLAGS) -o $@ $(OBJS) -lgcc
 
 # Compile C files (pattern rule)
-$(BUILD_DIR)/%.o: $(SRC_DIR)/%.c | $(BUILD_DIR)
+$(BUILD_DIR)/kernel/%.o: kernel/%.c | $(BUILD_DIR)/kernel
+	$(CC) -c $< -o $@ $(CFLAGS)
+
+$(BUILD_DIR)/drivers/%.o: drivers/%.c | $(BUILD_DIR)/drivers
+	$(CC) -c $< -o $@ $(CFLAGS)
+
+$(BUILD_DIR)/lib/%.o: lib/%.c | $(BUILD_DIR)/lib
 	$(CC) -c $< -o $@ $(CFLAGS)
 
 # Assemble boot.asm
 $(BUILD_DIR)/boot.o: $(ASM_SOURCES) | $(BUILD_DIR)
 	$(AS) $(ASFLAGS) $< -o $@
 
-# Ensure build dir exists
+# Ensure build subdirs exist
 $(BUILD_DIR):
 	mkdir -p $(BUILD_DIR)
+$(BUILD_DIR)/kernel:
+	mkdir -p $(BUILD_DIR)/kernel
+$(BUILD_DIR)/drivers:
+	mkdir -p $(BUILD_DIR)/drivers
+$(BUILD_DIR)/lib:
+	mkdir -p $(BUILD_DIR)/lib
 
 # Build GRUB ISO
 iso: $(ISO_FILE)
@@ -70,6 +88,8 @@ bear: clean
 
 # Debug: show what files will be compiled
 debug:
-	@echo "C sources: $(C_SOURCES)"
+	@echo "Kernel sources: $(KERNEL_SRC)"
+	@echo "Driver sources: $(DRIVERS_SRC)"
+	@echo "Lib sources: $(LIB_SRC)"
 	@echo "C objects: $(C_OBJS)"
 	@echo "All objects: $(OBJS)"

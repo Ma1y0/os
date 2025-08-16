@@ -8,13 +8,17 @@
       "-O2",
       "-Wall",
       "-Wextra",
+      "-Iinclude",
+      "-Iinclude/drivers",
+      "-Iinclude/kernel",
+      "-Iinclude/lib",
       "-o",
-      "build/console.o",
-      "src/console.c"
+      "build/kernel/console.o",
+      "kernel/console.c"
     ],
     "directory": "/home/ma1y0/Documents/c/os",
-    "file": "/home/ma1y0/Documents/c/os/src/console.c",
-    "output": "/home/ma1y0/Documents/c/os/build/console.o"
+    "file": "/home/ma1y0/Documents/c/os/kernel/console.c",
+    "output": "/home/ma1y0/Documents/c/os/build/kernel/console.o"
   },
   {
     "arguments": [
@@ -25,13 +29,17 @@
       "-O2",
       "-Wall",
       "-Wextra",
+      "-Iinclude",
+      "-Iinclude/drivers",
+      "-Iinclude/kernel",
+      "-Iinclude/lib",
       "-o",
-      "build/kernel.o",
-      "src/kernel.c"
+      "build/kernel/kernel.o",
+      "kernel/kernel.c"
     ],
     "directory": "/home/ma1y0/Documents/c/os",
-    "file": "/home/ma1y0/Documents/c/os/src/kernel.c",
-    "output": "/home/ma1y0/Documents/c/os/build/kernel.o"
+    "file": "/home/ma1y0/Documents/c/os/kernel/kernel.c",
+    "output": "/home/ma1y0/Documents/c/os/build/kernel/kernel.o"
   },
   {
     "arguments": [
@@ -42,12 +50,37 @@
       "-O2",
       "-Wall",
       "-Wextra",
+      "-Iinclude",
+      "-Iinclude/drivers",
+      "-Iinclude/kernel",
+      "-Iinclude/lib",
       "-o",
-      "build/vga.o",
-      "src/vga.c"
+      "build/drivers/vga.o",
+      "drivers/vga.c"
     ],
     "directory": "/home/ma1y0/Documents/c/os",
-    "file": "/home/ma1y0/Documents/c/os/src/vga.c",
-    "output": "/home/ma1y0/Documents/c/os/build/vga.o"
+    "file": "/home/ma1y0/Documents/c/os/drivers/vga.c",
+    "output": "/home/ma1y0/Documents/c/os/build/drivers/vga.o"
+  },
+  {
+    "arguments": [
+      "/nix/store/x3bl1vw9wvs2vjn1ijnrfi8y1j7fcnlc-i686-elf-gcc-wrapper-13.3.0/bin/i686-elf-gcc",
+      "-c",
+      "-std=gnu17",
+      "-ffreestanding",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-Iinclude",
+      "-Iinclude/drivers",
+      "-Iinclude/kernel",
+      "-Iinclude/lib",
+      "-o",
+      "build/lib/string.o",
+      "lib/string.c"
+    ],
+    "directory": "/home/ma1y0/Documents/c/os",
+    "file": "/home/ma1y0/Documents/c/os/lib/string.c",
+    "output": "/home/ma1y0/Documents/c/os/build/lib/string.o"
   }
 ]

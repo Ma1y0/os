@@ -1,7 +1,5 @@
-#include <stddef.h>
-
-#include "console.h"
-#include "vga.h"
+#include <drivers/vga.h>
+#include <kernel/console.h>
 
 void kernel_main(void) {
     vga_clear();

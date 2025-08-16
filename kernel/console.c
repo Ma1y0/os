@@ -1,6 +1,5 @@
-#include "console.h"
-
-#include "vga.h"
+#include <drivers/vga.h>
+#include <kernel/console.h>
 
 size_t cursor[] = {0, 0};
 

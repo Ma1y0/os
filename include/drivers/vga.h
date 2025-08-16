@@ -1,6 +1,6 @@
 #pragma once
 
-#include <stddef.h>
+#include "lib/types.h"
 
 #define VGA_MEM 0xB8000
 #define VGA_COLS 80

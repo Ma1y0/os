@@ -1,4 +1,4 @@
-#include "vga.h"
+#include <drivers/vga.h>
 
 static volatile uint16_t *vga_mem = (uint16_t *)VGA_MEM;
 
