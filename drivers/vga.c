@@ -13,11 +13,3 @@ void vga_clear(void) {
 void vga_putchar(char ch, enum vga_color color, size_t x, size_t y) {
     vga_mem[y * VGA_COLS + x] = (color << 8) | ch;
 }
-
-// Puts a null terminated string `s` into the VGA text buffer
-// TODO: Should make sure the string `s` doesn't overflow the VGA buffer
-void vga_puts(const char *s, enum vga_color color, size_t x, size_t y) {
-    for (size_t i = 0; s[i] != 0; i++) {
-        vga_putchar(s[i], color, x + i, y);
-    }
-}

@@ -1,5 +1,6 @@
 #include <drivers/vga.h>
 #include <kernel/console.h>
+#include <lib/string.h>
 
 size_t cursor[] = {0, 0};
 
@@ -9,5 +10,13 @@ void putchar(char ch) {
 }
 
 void puts(const char *s) {
-    vga_puts(s, VGA_COLOR_WHITE, cursor[0], cursor[1]);
+    for (size_t i = 0; s[i] != 0; i++) {
+        if (s[i] == '\n') {
+            cursor[0] = 0;
+            cursor[1]++;
+            continue;
+        }
+
+        putchar(s[i]);
+    }
 }

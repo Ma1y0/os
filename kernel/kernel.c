@@ -11,4 +11,13 @@ void kernel_main(void) {
 
     putchar('c');
     putchar('d');
+
+    putchar(' ');
+    putchar(' ');
+
+    puts("Line 1\nLine 2");
+    putchar(' ');
+
+    puts("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+         "AAAAAAAAAAAAAAAAAAAAA");
 }
