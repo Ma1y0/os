@@ -1,5 +1,6 @@
 #include <drivers/vga.h>
 #include <kernel/console.h>
+#include <lib/string.h>
 
 void kernel_main(void) {
     vga_clear();
@@ -16,8 +17,7 @@ void kernel_main(void) {
     putchar(' ');
 
     puts("Line 1\nLine 2");
-    putchar(' ');
+    putchar('\n');
 
-    puts("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-         "AAAAAAAAAAAAAAAAAAAAA");
+    putchar(strlen("Hello!") + 48);
 }

@@ -16,9 +16,16 @@
         devShells.default = pkgs.mkShell {
           nativeBuildInputs = with pkgs; [
             # Cross-compiler for x86 bare metal
-            # pkgsCross.i686-embedded.buildPackages.gcc
             pkgsCross.i686-embedded.buildPackages.binutils
 	    pkgsCross.i686-embedded.buildPackages.gcc
+	    # ARM64
+	    pkgsCross.aarch64-embedded.buildPackages.binutils
+	    pkgsCross.aarch64-embedded.buildPackages.gcc
+	    # ARM
+	    pkgsCross.arm-embedded.buildPackages.binutils
+	    pkgsCross.arm-embedded.buildPackages.gcc
+
+
 
 	    # Dev tools
 	    clang-tools

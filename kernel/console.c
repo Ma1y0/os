@@ -5,18 +5,18 @@
 size_t cursor[] = {0, 0};
 
 void putchar(char ch) {
+    if (ch == '\n') {
+        cursor[0] = 0;
+        cursor[1]++;
+        return;
+    }
+
     vga_putchar(ch, VGA_COLOR_WHITE, cursor[0], cursor[1]);
     cursor[0]++;
 }
 
 void puts(const char *s) {
     for (size_t i = 0; s[i] != 0; i++) {
-        if (s[i] == '\n') {
-            cursor[0] = 0;
-            cursor[1]++;
-            continue;
-        }
-
         putchar(s[i]);
     }
 }
