@@ -1,7 +1,7 @@
 CC      := i686-elf-gcc
 AS      := nasm
 LD      := i686-elf-gcc
-CFLAGS  := -std=gnu17 -ffreestanding -O2 -Wall -Wextra -Iinclude -Iinclude/drivers -Iinclude/kernel -Iinclude/lib
+CFLAGS  := -std=gnu17 -ffreestanding -O0 -Wall -Wextra -Iinclude -Iinclude/drivers -Iinclude/kernel -Iinclude/lib -g -ggdb
 LDFLAGS := -T linker.ld -ffreestanding -O2 -nostdlib
 ASFLAGS := -felf32
 
@@ -86,10 +86,26 @@ clean:
 bear: clean
 	bear -- $(MAKE) all
 
-# Debug: show what files will be compiled
-debug:
-	@echo "Kernel sources: $(KERNEL_SRC)"
-	@echo "Driver sources: $(DRIVERS_SRC)"
-	@echo "Lib sources: $(LIB_SRC)"
-	@echo "C objects: $(C_OBJS)"
-	@echo "All objects: $(OBJS)"
+
+LDFLAGS_DEBUG := -T linker.ld -ffreestanding -O0 -nostdlib -g
+
+debug-build: CFLAGS += -DDEBUG
+debug-build: LDFLAGS := $(LDFLAGS_DEBUG)
+debug-build: $(KERNEL_BIN)
+
+# Run QEMU with GDB server enabled
+run-debug: $(KERNEL_BIN)
+	qemu-system-i386 -kernel $(KERNEL_BIN) -device virtio-gpu-pci -s -S
+
+# Run GDB and connect to QEMU
+gdb: $(KERNEL_BIN)
+	gdb -ex "target remote localhost:1234" -ex "symbol-file $(KERNEL_BIN)" $(KERNEL_BIN)
+
+# Run both QEMU and GDB in separate terminals (requires tmux or screen)
+debug: $(KERNEL_BIN)
+	@echo "Starting QEMU with GDB server on port 1234..."
+	@echo "Run 'make gdb-connect' in another terminal to connect GDB"
+	qemu-system-i386 -kernel $(KERNEL_BIN) -device virtio-gpu-pci -s -S
+
+gdb-connect: $(KERNEL_BIN)
+	gdb -ex "target remote localhost:1234" -ex "symbol-file $(KERNEL_BIN)" -ex "b kernel_main" -ex "continue" $(KERNEL_BIN)

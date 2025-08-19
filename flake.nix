@@ -30,6 +30,7 @@
 	    # Dev tools
 	    clang-tools
 	    bear  # Tool that generates a compilation database for clang tooling
+	    gdb
 
 	    # Additional useful tools for OS development
 	    nasm        # Assembler for x86/x86_64

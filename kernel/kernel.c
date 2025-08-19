@@ -6,13 +6,10 @@
 
 void kernel_main(void) {
     vga_clear();
-    puts("Hello, World!");
+    puts("Hello, World!\nWelcome to the OS!\n====================================================\n\n");
 
-    char *a = "Hello, World!";
     char b[255];
 
-    // snprintf(b, strlen(a), a);
-    // puts(a);
-    // putchar('\n');
-    // puts(b);
+    snprintf(b, 200, "Message: %d.abcdefgh", 5);
+    puts(b);
 }
