@@ -1,23 +1,18 @@
+#include <drivers/pci.h>
 #include <drivers/vga.h>
 #include <kernel/console.h>
+#include <lib/snprintf.h>
 #include <lib/string.h>
 
 void kernel_main(void) {
     vga_clear();
-    putchar('x');
-    putchar('a');
-    putchar('b');
+    puts("Hello, World!");
 
-    puts("Hello, Wordl!");
+    char *a = "Hello, World!";
+    char b[255];
 
-    putchar('c');
-    putchar('d');
-
-    putchar(' ');
-    putchar(' ');
-
-    puts("Line 1\nLine 2");
-    putchar('\n');
-
-    putchar(strlen("Hello!") + 48);
+    // snprintf(b, strlen(a), a);
+    // puts(a);
+    // putchar('\n');
+    // puts(b);
 }

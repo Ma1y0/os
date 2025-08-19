@@ -9,7 +9,7 @@ TabWidth: 4
 ContinuationIndentWidth: 4
 
 # Line length
-ColumnLimit: 80
+ColumnLimit: 120
 
 # Braces
 BreakBeforeBraces: Attach

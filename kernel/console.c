@@ -2,7 +2,7 @@
 #include <kernel/console.h>
 #include <lib/string.h>
 
-size_t cursor[] = {0, 0};
+static size_t cursor[] = {0, 0};
 
 void putchar(char ch) {
     if (ch == '\n') {

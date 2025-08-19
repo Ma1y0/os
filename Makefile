@@ -76,7 +76,7 @@ $(GRUB_CFG): $(KERNEL_BIN)
 
 # Run in QEMU
 run: $(KERNEL_BIN)
-	qemu-system-i386 -kernel $(KERNEL_BIN)
+	qemu-system-i386 -kernel $(KERNEL_BIN) -device virtio-gpu-pci
 
 # Clean
 clean:
