@@ -2,6 +2,8 @@
 
 // TODO: types depend on the architecture
 
+#define NULL ((void *)0)
+
 /*** NUMBERS ***/
 typedef unsigned int size_t;
 

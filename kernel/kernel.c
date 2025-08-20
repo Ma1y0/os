@@ -10,12 +10,6 @@ void kernel_main(void) {
     puts("Hello, World!\nWelcome to the OS!\n====================================================\n\n");
 
     char b[255];
-
-    snprintf(b, 200, "Message: %d.abcdefgh\n", 5);
+    snprintf(b, 500, "Decimal: %d, HEX: %x, Char: %c, String: %s\nHello % World\n", 5, 64, 'O', "Hello, World!");
     puts(b);
-
-    char c[255];
-
-    puts(itoa(-20, c, 10));
-    puts("     <-- number");
 }

@@ -56,4 +56,4 @@ ReflowComments: false
 
 # Other
 KeepEmptyLinesAtTheStartOfBlocks: false
-MaxEmptyLinesToKeep: 1
+MaxEmptyLinesToKeep: 2
