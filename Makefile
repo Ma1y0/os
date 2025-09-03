@@ -6,9 +6,7 @@ ifeq ($(ARCH),x86_64)
 	CC      = x86_64-elf-gcc
 	AS      = nasm
 	LD      = x86_64-elf-gcc
-	# CFLAGS = -m64 -ffreestanding -fno-stack-protector -fno-pic -mno-red-zone
-	#  -g -ggdb
-	CFLAGS  =  -ffreestanding -O0 -g -ggdb3
+	CFLAGS  =  -ffreestanding -O0 -g -ggdb3 -fno-stack-protector -mno-red-zone -fno-pic -mcmodel=kernel
 	LDFLAGS = -T ./arch/x86_64/linker.ld -ffreestanding -O2 -nostdlib
 	ASFLAGS = -felf64
 endif
