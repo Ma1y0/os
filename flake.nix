@@ -28,7 +28,6 @@
 	    nasm        # Assembler for x86/x86_64
 	    qemu        # For testing your OS
 	    gvfs # 
-	    # gdb         # Debugger
 	    # hexdump     # For examining binary files
 	    grub2       # Bootloader
 	    libisoburn # required by grub

@@ -8,7 +8,7 @@ ifeq ($(ARCH),x86_64)
 	LD      = x86_64-elf-gcc
 	# CFLAGS = -m64 -ffreestanding -fno-stack-protector -fno-pic -mno-red-zone
 	#  -g -ggdb
-	CFLAGS  = -std=gnu17 -ffreestanding -O0 -Wall -Wextra 
+	CFLAGS  =  -ffreestanding -O0 -g -ggdb3
 	LDFLAGS = -T ./arch/x86_64/linker.ld -ffreestanding -O2 -nostdlib
 	ASFLAGS = -felf64
 endif
@@ -57,7 +57,7 @@ $(BUILDDIR)/%.o: %.asm
 	@mkdir -p $(dir $@)
 	$(AS) $(ASFLAGS) $< -o $@
 
-# Create ISO image (useful for testing)
+# Create ISO image 
 iso: $(BUILDDIR)/$(KERNEL_NAME).bin
 	@echo "Creating ISO image..."
 	@mkdir -p $(BUILDDIR)/iso/boot/grub
@@ -77,13 +77,30 @@ else
 	@echo "Run-iso target not implemented for $(ARCH)"
 endif
 
-# Debug with GDB
-debug: $(BUILDDIR)/$(KERNEL_NAME).bin
+# Debug with GDB using ISO
+debug: iso
 ifeq ($(ARCH),x86_64)
-	qemu-system-x86_64 -kernel $(BUILDDIR)/$(KERNEL_NAME).bin -serial stdio -s -S &
-	gdb $(BUILDDIR)/$(KERNEL_NAME).bin -ex "target remote :1234"
+	@echo "Starting QEMU with GDB server..."
+	@echo "Connect with: gdb $(BUILDDIR)/$(KERNEL_NAME).bin"
+	@echo "Then in GDB: target remote :1234"
+	@echo "To break at kernel_main: break kernel_main"
+	qemu-system-x86_64 -cdrom $(BUILDDIR)/$(KERNEL_NAME).iso -s -S -no-reboot -no-shutdown
 else
 	@echo "Debug target not implemented for $(ARCH)"
+endif
+
+# Debug with automatic GDB connection
+debug-auto: iso
+ifeq ($(ARCH),x86_64)
+	@echo "Starting QEMU and connecting GDB automatically..."
+	@bash -c 'qemu-system-x86_64 -cdrom $(BUILDDIR)/$(KERNEL_NAME).iso -s -S -no-reboot -no-shutdown & \
+	sleep 2; \
+	gdb $(BUILDDIR)/$(KERNEL_NAME).bin \
+		-ex "target remote :1234" \
+		-ex "break kernel_main" \
+		-ex "continue"'
+else
+	@echo "Debug-auto target not implemented for $(ARCH)"
 endif
 
 # Clean build artifacts
