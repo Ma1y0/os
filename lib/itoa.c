@@ -1,5 +1,6 @@
 #include <lib/itoa.h>
 #include <lib/stdarg.h>
+#include <lib/string.h>
 #include <lib/types.h>
 
 char *itoa(int value, char *str, int base) {

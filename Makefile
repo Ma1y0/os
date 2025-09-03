@@ -62,7 +62,9 @@ iso: $(BUILDDIR)/$(KERNEL_NAME).bin
 	@echo "Creating ISO image..."
 	@mkdir -p $(BUILDDIR)/iso/boot/grub
 	@cp $(BUILDDIR)/$(KERNEL_NAME).bin $(BUILDDIR)/iso/boot/
-	@echo 'menuentry "$(KERNEL_NAME)" {' > $(BUILDDIR)/iso/boot/grub/grub.cfg
+	@echo 'set timeout=0' > $(BUILDDIR)/iso/boot/grub/grub.cfg
+	@echo 'set default=0' >> $(BUILDDIR)/iso/boot/grub/grub.cfg
+	@echo 'menuentry "$(KERNEL_NAME)" {' >> $(BUILDDIR)/iso/boot/grub/grub.cfg
 	@echo '    multiboot2 /boot/$(KERNEL_NAME).bin' >> $(BUILDDIR)/iso/boot/grub/grub.cfg
 	@echo '}' >> $(BUILDDIR)/iso/boot/grub/grub.cfg
 	@grub-mkrescue -o $(BUILDDIR)/$(KERNEL_NAME).iso $(BUILDDIR)/iso 2>/dev/null || echo "grub-mkrescue not found, skipping ISO creation"
