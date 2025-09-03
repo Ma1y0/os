@@ -1,0 +1,44 @@
+[
+  {
+    "arguments": [
+      "/nix/store/6p7441j4rvqpajh4xf0igw3l3124kk5c-x86_64-elf-gcc-wrapper-14.3.0/bin/x86_64-elf-gcc",
+      "-std=gnu17",
+      "-ffreestanding",
+      "-O0",
+      "-Wall",
+      "-Wextra",
+      "-std=c17",
+      "-Wall",
+      "-Wextra",
+      "-Iinclude",
+      "-c",
+      "-o",
+      "build/kernel/kernel.o",
+      "kernel/kernel.c"
+    ],
+    "directory": "/home/ma1y0/Documents/c/osv4",
+    "file": "/home/ma1y0/Documents/c/osv4/kernel/kernel.c",
+    "output": "/home/ma1y0/Documents/c/osv4/build/kernel/kernel.o"
+  },
+  {
+    "arguments": [
+      "/nix/store/6p7441j4rvqpajh4xf0igw3l3124kk5c-x86_64-elf-gcc-wrapper-14.3.0/bin/x86_64-elf-gcc",
+      "-std=gnu17",
+      "-ffreestanding",
+      "-O0",
+      "-Wall",
+      "-Wextra",
+      "-std=c17",
+      "-Wall",
+      "-Wextra",
+      "-Iinclude",
+      "-c",
+      "-o",
+      "build/drivers/vga.o",
+      "drivers/vga.c"
+    ],
+    "directory": "/home/ma1y0/Documents/c/osv4",
+    "file": "/home/ma1y0/Documents/c/osv4/drivers/vga.c",
+    "output": "/home/ma1y0/Documents/c/osv4/build/drivers/vga.o"
+  }
+]
