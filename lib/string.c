@@ -21,3 +21,14 @@ char *strrev(char *s) {
 
     return s;
 }
+
+// Fills the first n bytes of the memory area pointed to by s with the constant byte c
+void *memset(void *dest, int c, size_t len) {
+    char *s = dest;
+
+    for (; len; len--, s++) {
+        *s = c;
+    }
+
+    return dest;
+}
