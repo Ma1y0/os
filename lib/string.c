@@ -1,4 +1,5 @@
 #include <lib/string.h>
+#include <stdint.h>
 
 // Returns the length of a null terminated string `s`
 size_t strlen(const char *s) {
@@ -22,12 +23,36 @@ char *strrev(char *s) {
     return s;
 }
 
-// Fills the first n bytes of the memory area pointed to by s with the constant byte c
-void *memset(void *dest, int c, size_t len) {
+// Fills the first n bytes of the memory area pointed to by dest with the constant byte c
+void *memset(void *dest, int c, size_t n) {
     char *s = dest;
 
-    for (; len; len--, s++) {
+    for (; n; n--, s++) {
         *s = c;
+    }
+
+    return dest;
+}
+
+
+// Copies `n` bytes from memory pointed to by `src` to memory pointed to by `dest`
+void *memmove(void *dest, const void *src, size_t n) {
+    uint8_t *d = dest;
+    const uint8_t *s = src;
+
+
+    if (d < s) {
+        // Copy forward
+        for (; n; d++, s++, n--) {
+            *d = *s;
+        }
+    } else {
+        // Copy backward
+        d += n;
+        s += n;
+        for (; n; n--, d++, s++) {
+            *d = *s;
+        }
     }
 
     return dest;
