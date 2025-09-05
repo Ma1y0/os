@@ -6,6 +6,9 @@ bits 32
 start:
 	mov esp, stack_top
 
+	; Save multiboot2 info address before it's overwritten (a dirty work around)
+	mov [multiboot2_info_addr], ebx
+
 	call check_multiboot
 	call check_cpuid
 	call check_long_mode
@@ -14,6 +17,9 @@ start:
 	call enable_paging
 
 	lgdt [gdt64.pointer]
+
+	; Pass the multiboot2 info to long mode
+	mov edi, [multiboot2_info_addr]
 	jmp gdt64.code_segment:long_mode_start
 
 	hlt
@@ -126,6 +132,10 @@ page_table_l2:
 stack_bottom:
 	resb 4096 * 4
 stack_top:
+
+; Storage for multiboot2 info address
+multiboot2_info_addr:
+	resd 1
 
 section .rodata
 gdt64:

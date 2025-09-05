@@ -1,0 +1,14 @@
+#pragma once
+
+#include "lib/types.h"
+
+
+#define MULTIBOOT2_TAG_TYPE_END 0
+#define MULTIBOOT2_TAG_TYPE_CMDLINE 1
+#define MULTIBOOT2_TAG_TYPE_BOOT_LOADER_NAME 2
+#define MULTIBOOT2_TAG_TYPE_MODULE 3
+#define MULTIBOOT2_TAG_TYPE_BASIC_MEMINFO 4
+#define MULTIBOOT2_TAG_TYPE_BOOTDEV 5
+#define MULTIBOOT2_TAG_TYPE_MMAP 6
+
+void multiboot2_parse_info(uint32_t addr);

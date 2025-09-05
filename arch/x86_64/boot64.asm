@@ -12,6 +12,7 @@ long_mode_start:
     mov fs, ax
     mov gs, ax
 
+    ; EDI should contains the multiboot2 info address, pass it to kernel_main
 	call kernel_main
     hlt
 
