@@ -1,6 +1,7 @@
 #pragma once
 
+#include "lib/types.h"
+
 void putchar(char ch);
 void puts(const char *s);
-
-void printf(const char *restrict format, ...);
+size_t printf(const char *format, ...);
