@@ -3,7 +3,8 @@
 #include <lib/stdarg.h>
 #include <lib/string.h>
 
-// Only supports two char long formatting specifiers
+// FIX: Only supports two char long formatting specifiers
+// TODO: Duplicate code between this and console/printf
 size_t snprintf(char *restrict s, size_t maxlen, const char *restrict format, ...) {
     if (maxlen == 0)
         return 0;
@@ -23,7 +24,7 @@ size_t snprintf(char *restrict s, size_t maxlen, const char *restrict format, ..
             case 'd':
             case 'i': {
                 int value = va_arg(args, int);
-                char literal[32]; // Should be enough for 32-bit int
+                char literal[32] = {0}; // Should be enough for 32-bit int
                 itoa(value, literal, 10);
 
                 size_t len = strlen(literal);

@@ -5,7 +5,7 @@
 
 char *itoa(int value, char *str, int base) {
     if (value == 0) {
-        str = "0";
+        str[0] = '0';
         return str;
     }
 

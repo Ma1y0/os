@@ -1,7 +1,7 @@
 #include <lib/string.h>
 #include <stdint.h>
 
-// Returns the length of a null terminated string `s`
+// Returns the length of a NULL terminated string `s`
 size_t strlen(const char *s) {
     size_t i = 0;
     while (s[i] != 0) {
@@ -23,7 +23,7 @@ char *strrev(char *s) {
     return s;
 }
 
-// Fills the first n bytes of the memory area pointed to by dest with the constant byte c
+// Fills the first `n` bytes of the memory area pointed to by `dest` with the constant byte `c`
 void *memset(void *dest, int c, size_t n) {
     char *s = dest;
 
