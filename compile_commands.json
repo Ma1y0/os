@@ -2,11 +2,14 @@
   {
     "arguments": [
       "/nix/store/6p7441j4rvqpajh4xf0igw3l3124kk5c-x86_64-elf-gcc-wrapper-14.3.0/bin/x86_64-elf-gcc",
-      "-std=gnu17",
       "-ffreestanding",
       "-O0",
-      "-Wall",
-      "-Wextra",
+      "-g",
+      "-ggdb3",
+      "-fno-stack-protector",
+      "-mno-red-zone",
+      "-fno-pic",
+      "-mcmodel=kernel",
       "-std=c17",
       "-Wall",
       "-Wextra",
@@ -16,18 +19,45 @@
       "build/kernel/kernel.o",
       "kernel/kernel.c"
     ],
-    "directory": "/home/ma1y0/Documents/c/osv4",
-    "file": "/home/ma1y0/Documents/c/osv4/kernel/kernel.c",
-    "output": "/home/ma1y0/Documents/c/osv4/build/kernel/kernel.o"
+    "directory": "/home/ma1y0/Documents/c/os",
+    "file": "/home/ma1y0/Documents/c/os/kernel/kernel.c",
+    "output": "/home/ma1y0/Documents/c/os/build/kernel/kernel.o"
   },
   {
     "arguments": [
       "/nix/store/6p7441j4rvqpajh4xf0igw3l3124kk5c-x86_64-elf-gcc-wrapper-14.3.0/bin/x86_64-elf-gcc",
-      "-std=gnu17",
       "-ffreestanding",
       "-O0",
+      "-g",
+      "-ggdb3",
+      "-fno-stack-protector",
+      "-mno-red-zone",
+      "-fno-pic",
+      "-mcmodel=kernel",
+      "-std=c17",
       "-Wall",
       "-Wextra",
+      "-Iinclude",
+      "-c",
+      "-o",
+      "build/kernel/console.o",
+      "kernel/console.c"
+    ],
+    "directory": "/home/ma1y0/Documents/c/os",
+    "file": "/home/ma1y0/Documents/c/os/kernel/console.c",
+    "output": "/home/ma1y0/Documents/c/os/build/kernel/console.o"
+  },
+  {
+    "arguments": [
+      "/nix/store/6p7441j4rvqpajh4xf0igw3l3124kk5c-x86_64-elf-gcc-wrapper-14.3.0/bin/x86_64-elf-gcc",
+      "-ffreestanding",
+      "-O0",
+      "-g",
+      "-ggdb3",
+      "-fno-stack-protector",
+      "-mno-red-zone",
+      "-fno-pic",
+      "-mcmodel=kernel",
       "-std=c17",
       "-Wall",
       "-Wextra",
@@ -37,8 +67,80 @@
       "build/drivers/vga.o",
       "drivers/vga.c"
     ],
-    "directory": "/home/ma1y0/Documents/c/osv4",
-    "file": "/home/ma1y0/Documents/c/osv4/drivers/vga.c",
-    "output": "/home/ma1y0/Documents/c/osv4/build/drivers/vga.o"
+    "directory": "/home/ma1y0/Documents/c/os",
+    "file": "/home/ma1y0/Documents/c/os/drivers/vga.c",
+    "output": "/home/ma1y0/Documents/c/os/build/drivers/vga.o"
+  },
+  {
+    "arguments": [
+      "/nix/store/6p7441j4rvqpajh4xf0igw3l3124kk5c-x86_64-elf-gcc-wrapper-14.3.0/bin/x86_64-elf-gcc",
+      "-ffreestanding",
+      "-O0",
+      "-g",
+      "-ggdb3",
+      "-fno-stack-protector",
+      "-mno-red-zone",
+      "-fno-pic",
+      "-mcmodel=kernel",
+      "-std=c17",
+      "-Wall",
+      "-Wextra",
+      "-Iinclude",
+      "-c",
+      "-o",
+      "build/lib/itoa.o",
+      "lib/itoa.c"
+    ],
+    "directory": "/home/ma1y0/Documents/c/os",
+    "file": "/home/ma1y0/Documents/c/os/lib/itoa.c",
+    "output": "/home/ma1y0/Documents/c/os/build/lib/itoa.o"
+  },
+  {
+    "arguments": [
+      "/nix/store/6p7441j4rvqpajh4xf0igw3l3124kk5c-x86_64-elf-gcc-wrapper-14.3.0/bin/x86_64-elf-gcc",
+      "-ffreestanding",
+      "-O0",
+      "-g",
+      "-ggdb3",
+      "-fno-stack-protector",
+      "-mno-red-zone",
+      "-fno-pic",
+      "-mcmodel=kernel",
+      "-std=c17",
+      "-Wall",
+      "-Wextra",
+      "-Iinclude",
+      "-c",
+      "-o",
+      "build/lib/string.o",
+      "lib/string.c"
+    ],
+    "directory": "/home/ma1y0/Documents/c/os",
+    "file": "/home/ma1y0/Documents/c/os/lib/string.c",
+    "output": "/home/ma1y0/Documents/c/os/build/lib/string.o"
+  },
+  {
+    "arguments": [
+      "/nix/store/6p7441j4rvqpajh4xf0igw3l3124kk5c-x86_64-elf-gcc-wrapper-14.3.0/bin/x86_64-elf-gcc",
+      "-ffreestanding",
+      "-O0",
+      "-g",
+      "-ggdb3",
+      "-fno-stack-protector",
+      "-mno-red-zone",
+      "-fno-pic",
+      "-mcmodel=kernel",
+      "-std=c17",
+      "-Wall",
+      "-Wextra",
+      "-Iinclude",
+      "-c",
+      "-o",
+      "build/lib/snprintf.o",
+      "lib/snprintf.c"
+    ],
+    "directory": "/home/ma1y0/Documents/c/os",
+    "file": "/home/ma1y0/Documents/c/os/lib/snprintf.c",
+    "output": "/home/ma1y0/Documents/c/os/build/lib/snprintf.o"
   }
 ]
