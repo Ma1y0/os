@@ -1,4 +1,5 @@
 #To-Do
 
 - [ ] Memory maps
-- [ ] Framebuffer (multiboot2 info)
+- [ ] Framebuffer Indexed
+- [ ] Framebuffer RGB, EGA
