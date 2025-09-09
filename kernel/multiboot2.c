@@ -37,6 +37,15 @@ struct framebuffer_index_pallet {
     struct framebuffer_pallet_entry colors[];
 } __attribute__((packed));
 
+struct framebuffer_direct_RGB {
+    uint8_t red_field_position;
+    uint8_t red_mask_size;
+    uint8_t green_field_position;
+    uint8_t green_mask_size;
+    uint8_t blue_field_position;
+    uint8_t blue_mask_size;
+};
+
 void handle_framebuffer(struct framebuffer_tag *fb);
 
 void multiboot2_parse_info(uint32_t addr) {
@@ -64,6 +73,7 @@ void multiboot2_parse_info(uint32_t addr) {
     }
 }
 
+
 void handle_framebuffer(struct framebuffer_tag *fb) {
     printf("Framebuffer:\n");
     printf("Addr: %x\nwidth: %d, height: %d\nfb_type: %d\npitch: %d\nbpp: %d\n", fb->addr, fb->width, fb->height,
@@ -72,7 +82,7 @@ void handle_framebuffer(struct framebuffer_tag *fb) {
     void *color_info = (void *)(fb + 1);
 
     switch (fb->fb_type) {
-    case 0: {
+    case 0: { // Indexed pallet
         struct framebuffer_index_pallet *pallet = color_info;
         printf("Indexed color with %d colors.\n", pallet->num_collors);
         printf("Color 1 red: %d, green: %d, blue: %d\n", pallet->colors[0].red, pallet->colors[0].green,
@@ -80,13 +90,19 @@ void handle_framebuffer(struct framebuffer_tag *fb) {
 
         break;
     }
-    case 1:
+    case 1: // Direct RGB
         printf("Direct RGB color\n");
+        struct framebuffer_direct_RGB *rgb_fb = color_info;
+        printf("Red: pos=%d, mask=%d\nGreen: pos=%d, mask=%d\nBlue: pos=%d, mask=%d\n", rgb_fb->red_field_position,
+               rgb_fb->red_mask_size, rgb_fb->green_field_position, rgb_fb->green_mask_size,
+               rgb_fb->blue_field_position, rgb_fb->blue_mask_size);
+
+
         break;
-    case 2:
+    case 2: // VGA text
         printf("VGA text mode\n");
         break;
-    default:
+    default: // Unknown
         printf("Unknown framebuffer type\n");
         break;
     }
