@@ -55,4 +55,11 @@ SECTIONS
   }
   __bss_end = .;
 
+  /* Kernel heap */
+.heap ALIGN(4096) :
+  {
+    __heap_start = .;
+    . = . + 0x0100000;  /* 16 MiB */
+    __heap_end = .;
   }
+}

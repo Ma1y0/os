@@ -6,7 +6,7 @@ bits 32
 start:
 	mov esp, stack_top
 
-	; Save multiboot2 info address before it's overwritten (a dirty work around)
+	; Save multiboot2 info address before it's overwritten. (A dirty work around. I have no idea where do I override it.)
 	mov [multiboot2_info_addr], ebx
 
 	call check_multiboot

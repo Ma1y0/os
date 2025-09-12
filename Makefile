@@ -18,10 +18,11 @@ ARCHDIR = arch/$(ARCH)
 KERNELDIR = kernel
 DRIVERSDIR = drivers
 LIBDIR = lib
+MMDIR = mm
 INCLUDEDIR = include
 
 # Source files
-C_SOURCES = $(shell find $(KERNELDIR) $(DRIVERSDIR) $(LIBDIR) -name "*.c")
+C_SOURCES = $(shell find $(KERNELDIR) $(DRIVERSDIR) $(LIBDIR) $(MMDIR) -name "*.c")
 ASM_SOURCES = $(shell find $(ARCHDIR) -name "*.asm")
 
 # Object files
