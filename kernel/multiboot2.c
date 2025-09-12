@@ -1,10 +1,10 @@
 #include <kernel/console.h>
 #include <kernel/multiboot2.h>
 #include <lib/types.h>
+#include <stddef.h>
 
 struct multiboot2_info {
     uint32_t total_size;
-
     uint32_t _reserved; // Always 0, should be ignored
 } __attribute__((packed));
 
@@ -44,9 +44,31 @@ struct framebuffer_direct_RGB {
     uint8_t green_mask_size;
     uint8_t blue_field_position;
     uint8_t blue_mask_size;
-};
+} __attribute__((packed));
+
+struct memory_map_record {
+    uint64_t base_addr; // The starting physical address
+    uint64_t length;    // The size of the memory region in bytes
+
+    // Value of 1 indicates available RAM
+    // Value of 2 isn't defined in the spec, so it will be treated as reserved.
+    // Value of 3 indicates usable memory holding ACPI information
+    // Value of 4 indicates reserved memory which needs to be preserved on hibernation
+    // Value of 5 indicates a memory which is occupied by defective RAM modules and all other values currently indicated a reserved area
+    uint32_t type;
+    uint32_t _reserved; // Is 0 and should be ignored by the os image
+} __attribute__((packed));
+
+struct memory_map {
+    uint32_t type; // 6
+    uint32_t size;
+    uint32_t entry_size;    // Guarantied to be a multiple of 8
+    uint32_t entry_version; // Currently only 0
+    struct memory_map_record entries[];
+} __attribute__((packed));
 
 void handle_framebuffer(struct framebuffer_tag *fb);
+void handle_mamory_map(struct memory_map *m_map);
 
 void multiboot2_parse_info(uint32_t addr) {
     printf("Loading the multiboot2 info from 0x%x\n", addr);
@@ -59,6 +81,11 @@ void multiboot2_parse_info(uint32_t addr) {
 
     while (tag->type != 0) {
         switch (tag->type) {
+        // Memory map
+        case 6:
+            handle_mamory_map((struct memory_map *)tag);
+            break;
+            // Framebuffer
         case 8:
             handle_framebuffer((struct framebuffer_tag *)tag);
             break;
@@ -70,6 +97,19 @@ void multiboot2_parse_info(uint32_t addr) {
 
         // The address must be 8 aligned
         tag = (struct multiboot2_tag *)((char *)tag + ((tag->size + 7) & ~7));
+    }
+}
+
+void handle_mamory_map(struct memory_map *m_map) {
+    printf("Memmory map: Version: %d, Size %d\n", m_map->entry_version, m_map->size);
+    struct memory_map_record *entry = m_map->entries;
+    size_t mmap_end = (size_t)m_map + m_map->size;
+
+    while ((size_t)entry < mmap_end) {
+        printf("Entry. Addr: 0x%x, Len: %d, Type: %d\n", entry->base_addr, entry->length, entry->type);
+
+        // Go to next entry
+        entry = (struct memory_map_record *)((size_t)entry + m_map->entry_size);
     }
 }
 
@@ -91,6 +131,7 @@ void handle_framebuffer(struct framebuffer_tag *fb) {
         break;
     }
     case 1: // Direct RGB
+        // BROKEN!!!!!
         printf("Direct RGB color\n");
         struct framebuffer_direct_RGB *rgb_fb = color_info;
         printf("Red: pos=%d, mask=%d\nGreen: pos=%d, mask=%d\nBlue: pos=%d, mask=%d\n", rgb_fb->red_field_position,

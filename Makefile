@@ -6,7 +6,7 @@ ifeq ($(ARCH),x86_64)
 	CC      = x86_64-elf-gcc
 	AS      = nasm
 	LD      = x86_64-elf-gcc
-	CFLAGS  =  -ffreestanding -O0 -g -ggdb3 -fno-stack-protector -mno-red-zone -fno-pic -mcmodel=kernel
+	CFLAGS  = -DARCH_x86_64 -ffreestanding -O0 -g -ggdb3 -fno-stack-protector -mno-red-zone -fno-pic -mcmodel=kernel
 	LDFLAGS = -T ./arch/x86_64/linker.ld -ffreestanding -O2 -nostdlib
 	ASFLAGS = -felf64
 endif
@@ -70,7 +70,7 @@ iso: $(BUILDDIR)/$(KERNEL_NAME).bin
 # Run kernel with ISO in QEMU
 run-iso: iso
 ifeq ($(ARCH),x86_64)
-	qemu-system-x86_64 -cdrom $(BUILDDIR)/$(KERNEL_NAME).iso
+	qemu-system-x86_64 -m 2G -cdrom $(BUILDDIR)/$(KERNEL_NAME).iso -machine pc
 else
 	@echo "Run-iso target not implemented for $(ARCH)"
 endif
@@ -82,7 +82,7 @@ ifeq ($(ARCH),x86_64)
 	@echo "Connect with: gdb $(BUILDDIR)/$(KERNEL_NAME).bin"
 	@echo "Then in GDB: target remote :1234"
 	@echo "To break at kernel_main: break kernel_main"
-	qemu-system-x86_64 -cdrom $(BUILDDIR)/$(KERNEL_NAME).iso -s -S -no-reboot -no-shutdown
+	qemu-system-x86_64 -m 2G -cdrom $(BUILDDIR)/$(KERNEL_NAME).iso -s -S -no-reboot -no-shutdown -machine pc
 else
 	@echo "Debug target not implemented for $(ARCH)"
 endif

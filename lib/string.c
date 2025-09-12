@@ -1,5 +1,4 @@
 #include <lib/string.h>
-#include <stdint.h>
 
 // Returns the length of a NULL terminated string `s`
 size_t strlen(const char *s) {

@@ -1,18 +1,14 @@
 #pragma once
 
-// TODO: types depend on the architecture
+// TODO: types should depend on the architecture
 
 #define NULL ((void *)0)
 
-/*** NUMBERS ***/
-typedef unsigned int size_t;
-
-typedef unsigned long uint64_t;
-typedef unsigned int uint32_t;
-typedef unsigned short uint16_t;
-typedef unsigned char uint8_t;
+#ifdef ARCH_x86_64
+#include "../arch/x86_64/types.h"
+#endif // ARCH_x86_64
 
 /*** BOOLEANS ***/
-typedef uint8_t bool;
+typedef _Bool bool;
 #define true 1
 #define false 0

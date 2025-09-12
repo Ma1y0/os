@@ -2,6 +2,32 @@
   {
     "arguments": [
       "/nix/store/6p7441j4rvqpajh4xf0igw3l3124kk5c-x86_64-elf-gcc-wrapper-14.3.0/bin/x86_64-elf-gcc",
+      "-DARCH_x86_64",
+      "-ffreestanding",
+      "-O0",
+      "-g",
+      "-ggdb3",
+      "-fno-stack-protector",
+      "-mno-red-zone",
+      "-fno-pic",
+      "-mcmodel=kernel",
+      "-std=c17",
+      "-Wall",
+      "-Wextra",
+      "-Iinclude",
+      "-c",
+      "-o",
+      "build/kernel/multiboot2.o",
+      "kernel/multiboot2.c"
+    ],
+    "directory": "/home/ma1y0/Documents/c/os",
+    "file": "/home/ma1y0/Documents/c/os/kernel/multiboot2.c",
+    "output": "/home/ma1y0/Documents/c/os/build/kernel/multiboot2.o"
+  },
+  {
+    "arguments": [
+      "/nix/store/6p7441j4rvqpajh4xf0igw3l3124kk5c-x86_64-elf-gcc-wrapper-14.3.0/bin/x86_64-elf-gcc",
+      "-DARCH_x86_64",
       "-ffreestanding",
       "-O0",
       "-g",
@@ -26,6 +52,7 @@
   {
     "arguments": [
       "/nix/store/6p7441j4rvqpajh4xf0igw3l3124kk5c-x86_64-elf-gcc-wrapper-14.3.0/bin/x86_64-elf-gcc",
+      "-DARCH_x86_64",
       "-ffreestanding",
       "-O0",
       "-g",
@@ -50,6 +77,7 @@
   {
     "arguments": [
       "/nix/store/6p7441j4rvqpajh4xf0igw3l3124kk5c-x86_64-elf-gcc-wrapper-14.3.0/bin/x86_64-elf-gcc",
+      "-DARCH_x86_64",
       "-ffreestanding",
       "-O0",
       "-g",
@@ -74,6 +102,7 @@
   {
     "arguments": [
       "/nix/store/6p7441j4rvqpajh4xf0igw3l3124kk5c-x86_64-elf-gcc-wrapper-14.3.0/bin/x86_64-elf-gcc",
+      "-DARCH_x86_64",
       "-ffreestanding",
       "-O0",
       "-g",
@@ -98,6 +127,7 @@
   {
     "arguments": [
       "/nix/store/6p7441j4rvqpajh4xf0igw3l3124kk5c-x86_64-elf-gcc-wrapper-14.3.0/bin/x86_64-elf-gcc",
+      "-DARCH_x86_64",
       "-ffreestanding",
       "-O0",
       "-g",
@@ -122,6 +152,7 @@
   {
     "arguments": [
       "/nix/store/6p7441j4rvqpajh4xf0igw3l3124kk5c-x86_64-elf-gcc-wrapper-14.3.0/bin/x86_64-elf-gcc",
+      "-DARCH_x86_64",
       "-ffreestanding",
       "-O0",
       "-g",
@@ -136,11 +167,11 @@
       "-Iinclude",
       "-c",
       "-o",
-      "build/lib/snprintf.o",
-      "lib/snprintf.c"
+      "build/lib/fmt.o",
+      "lib/fmt.c"
     ],
     "directory": "/home/ma1y0/Documents/c/os",
-    "file": "/home/ma1y0/Documents/c/os/lib/snprintf.c",
-    "output": "/home/ma1y0/Documents/c/os/build/lib/snprintf.o"
+    "file": "/home/ma1y0/Documents/c/os/lib/fmt.c",
+    "output": "/home/ma1y0/Documents/c/os/build/lib/fmt.o"
   }
 ]
